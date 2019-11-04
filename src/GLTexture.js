@@ -91,7 +91,12 @@ Texture.prototype.upload = function(source)
 
 	if(newHeight !== this.height || newWidth !== this.width)
 	{
-		gl.texImage2D(gl.TEXTURE_2D, 0, this.format, this.format, this.type, source);
+			// ADDED FOR WECHAT
+			if (source.webgl2data) {
+				gl.texImage2D(gl.TEXTURE_2D, 0, this.format, newWidth, newHeight, 0, this.format, this.type, source.webgl2data); 
+		} else {
+				gl.texImage2D(gl.TEXTURE_2D, 0, this.format, this.format, this.type, source);
+		}
 	}
 	else
 	{
